@@ -1,0 +1,60 @@
+.wrap {
+    position: relative;
+}
+
+.wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 500px;
+    margin-top: 150px;
+}
+
+.box1 {
+    border: 1px solid white;
+    width: 400px;
+
+
+}
+
+.box2 {
+    border: 1px solid black;
+    width: 100%;
+}
+
+.size {
+    display: flex;
+    justify-content: center;
+}
+
+.font {
+    position: relative;
+}
+
+.font {
+    position: absolute;
+    margin-left: 10px;
+    padding: 5px;
+}
+
+.inCome {
+
+    width: 100%;
+}
+
+.inCome_change {
+    border: 1px solid white;
+    width: 100%;
+    color: blue;
+    margin-left: 350px;
+    margin-top: -25px;
+}
+
+.equal {
+    display: flex;
+    justify-content: center;
+    margin-right: 500px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
