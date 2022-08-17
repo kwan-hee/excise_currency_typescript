@@ -15,30 +15,31 @@ function Main() {
   const [tokorea, setTokorea] = useState('달러');
   const [fromkorea, setFromkorea] = useState('달러');
 
-  function convert(from:string, to:string) {
+  function convert(from:any, to:any) {
+    let cR:any = currencyRatio;
     let amount = fromValue;
     console.log('from: ', from);
     console.log('amount: ', amount);
-    let convertedAmount = amount * currencyRatio[from][to];
+    let convertedAmount:number = amount * cR[from][to];
     setTovalue(convertedAmount);
     console.log('환전 결과: ', convertedAmount);
-    setTokorea(currencyRatio[to].unit);
-    setFromkorea(currencyRatio[from].unit);
+    setTokorea(cR[to].unit);
+    setFromkorea(cR[from].unit);
   }
 
   console.log(currencyRatio.USD.unit);
 
-  const handlefromClick = (e) => {
+  const handlefromClick = (e:any) => {
     setfromCurrency(e.target.value);
     convert(e.target.value, tocurrency);
   };
 
-  const handletoClick = (e) => {
+  const handletoClick = (e:any) => {
     settoCurrency(e.target.value);
     convert(fromcurrency, e.target.value);
   };
 
-  const onReset = (e) => {
+  const onReset = (e:any) => {
     setText('');
   };
 
@@ -69,7 +70,8 @@ function Main() {
                 value="KRW"
                 onClick={handlefromClick}
                 onChange={(event) => {
-                  setfromCurrency(event.target.value);
+                  
+                  setfromCurrency((event.target as HTMLInputElement).value);
                 }}
               >
                 KRW
@@ -81,7 +83,7 @@ function Main() {
                   value="JPY"
                   onClick={handlefromClick}
                   onChange={(event) => {
-                    setfromCurrency(event.target.value);
+                    setfromCurrency((event.target as HTMLInputElement).value);
                   }}
                 >
                   JPY
@@ -94,8 +96,11 @@ function Main() {
               className={css.inCome}
               id="from"
               placeholder="환전할 액수를 넣으세요"
-              onKeyUp={convert}
-              onChange={(event) => {
+              // onKeyUp={convert}
+              onKeyUp={(e: React.KeyboardEvent<HTMLInputElement>) => {
+               convert;
+              }}
+              onChange={(event:any) => {
                 setfromValue(event.target.value);
               }}
             />
@@ -119,7 +124,7 @@ function Main() {
                 value="USD"
                 onClick={handletoClick}
                 onChange={(event) => {
-                  settoCurrency(event.target.value);
+                  settoCurrency((event.target as HTMLInputElement).value);
                 }}
               >
                 USD
@@ -129,7 +134,7 @@ function Main() {
                 value="KRW"
                 onClick={handletoClick}
                 onChange={(event) => {
-                  settoCurrency(event.target.value);
+                  settoCurrency((event.target as HTMLInputElement).value);
                 }}
               >
                 KRW
@@ -139,14 +144,17 @@ function Main() {
                 value="JPY"
                 onClick={handletoClick}
                 onChange={(event) => {
-                  settoCurrency(event.target.value);
+                  settoCurrency((event.target as HTMLInputElement).value);
                 }}
               >
                 JPY
               </Dropdown.Item>
             </DropdownButton>
             <div className={css.box2}></div>
-            <input type="number" className={css.inCome} value={toValue} placeholder="환전할 액수를 넣으세요" id="to" onKeyUp={convert} />
+            <input type="number" className={css.inCome} value={toValue} placeholder="환전할 액수를 넣으세요" id="to" 
+           onKeyUp={(e: React.KeyboardEvent<HTMLInputElement>) => {
+           convert;
+          }} />
             <div className={css.inCome_change} id="tokorea">
               {tokorea}
             </div>
